@@ -3,7 +3,7 @@ def get_response
   puts "Please write something, or 'exit' to exit the program"
   response = gets.chomp
   if response == "exit"
-    exit()
+    exit
   elsif response != response.upcase
     puts "HUH?! SPEAK UP SONNY!"
     get_response
