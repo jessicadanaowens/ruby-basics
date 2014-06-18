@@ -1,26 +1,23 @@
 require 'date'
+require 'csv'
 
 puts "What is your name?"
 
 name = gets.chomp.capitalize
 
-filename = 'birthday_data.csv'
+birthday_open = CSV.read('birthday_data.csv')
+# puts birthday_open[1]
 
-txt = File.read filename
-
-birthday_info = txt.split(',')
-
-i = 0
-
-for each in birthday_info
-  if name == each
-    b = birthday_info[i+1]
-    year = b[0..3]
-    age = Time.new.year - year.to_i
-    puts name + " " + b + " " + age.to_s
+birthday_open.each do |item|
+  if item.include? name
+    name_birthday = item[0..2]
+    #extract the birthday year from item
+    birthday = item[2].to_i
+    age = Time.new.year.to_i - birthday
+    puts "your last name, first name, and birthday are: " + name_birthday.to_s
+    puts "your age is: " + age.to_s
   end
-
-  i += 1
-
 end
+
+
 
