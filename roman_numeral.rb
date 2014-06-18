@@ -1,48 +1,50 @@
-def roman_numeral number
+def roman_numeral num
+  thous = (num /1000)
+  hunds = (num % 1000 / 100)
+  tens = (num % 100 / 10)
+  ones = (num % 10)
 
-  roman = ''
-  roman = roman + 'M' * (number / 1000)
+  roman = 'M' * thous
 
-  if number%1000 >= 900
+  if hunds == 9
     roman = roman + 'CM'
+  elsif hunds == 5
+    roman = roman + 'D'
   else
-    roman = roman + 'D' * (number%1000/500)
+    if hunds == 4
+      roman = roman + 'CD'
+    end
   end
 
-  if number % 500 >= 400
-    roman = roman + 'CD'
-  else
-    roman = roman + 'C' * (number%500/100)
-  end
+  roman = roman + 'C' * hunds
 
-  if number % 100 >= 90
+  if tens == 9
     roman = roman + 'XC'
-  elsif number >= 50
-    roman = roman + 'L'
+  elsif tens == 5
+    roman = roman = 'L'
   else
-    if number % 100 >= 40
+    if tens == 4
       roman = roman + 'XL'
     end
   end
 
-  if number % 50 >= 10
-    roman = roman + 'X' * (number%50/10)
-  end
+  roman = roman + 'X' * tens
 
-  if number % 10 == 9
+  if ones == 9
     roman = roman + 'IX'
-  elsif number % 10 >= 5
-    roman = roman + 'V' * (number%10/5)
-  elsif number % 10 == 4
+  elsif ones == 5
+    roman = roman + 'V'
+  elsif ones == 4
       roman = roman + 'IV'
   else
-    if number % 10 < 4
-      roman = roman + 'I' * (number%10)
+    if ones <= 3
+      roman = roman + 'I' * ones
     end
+
   end
 
   puts roman
 
 end
 
-roman_numeral 1900
+roman_numeral 139
